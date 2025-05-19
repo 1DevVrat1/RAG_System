@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Chatbot | Groq + LLaMA 3</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            RAG Chatbot
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <label for="pdf_file">📁 Upload PDF:</label>
+            <input type="file" name="pdf_file" required>
+
+            <label for="api_key">🔑 Groq API Key:</label>
+            <input type="password" name="api_key" required>
+
+            <label for="question">💬 Ask a question:</label>
+            <div class="input-row">
+                <input type="text" name="question" placeholder="Type your question..." required>
+                <button type="submit">Send</button>
+            </div>
+        </form>
+
+        <div class="chat-box">
+            {% if question %}
+                <div class="chat-message user">
+                    <span class="label">You:</span>
+                    <p>{{ question }}</p>
+                </div>
+            {% endif %}
+
+            {% if answer %}
+                <div class="chat-message bot">
+                    <span class="label">Bot:</span>
+                    <p>{{ answer }}</p>
+                </div>
+            {% endif %}
+
+            {% if error %}
+                <div class="chat-message error">
+                    <span class="label">Error:</span>
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
